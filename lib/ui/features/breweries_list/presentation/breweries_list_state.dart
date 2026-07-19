@@ -1,0 +1,3 @@
+class BreweriesListState {
+  const BreweriesListState();
+}

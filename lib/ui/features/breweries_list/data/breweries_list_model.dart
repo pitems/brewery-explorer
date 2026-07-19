@@ -1,0 +1,3 @@
+class BreweriesListModel {
+  const BreweriesListModel();
+}
