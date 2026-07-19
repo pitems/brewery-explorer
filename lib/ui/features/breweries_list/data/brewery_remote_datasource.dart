@@ -5,3 +5,4 @@ abstract interface class BreweryRemoteDatasource {
   Future<BreweryDto> getBrewery(String id);
   Future<List<BreweryDto>> searchBreweries(String query);
 }
+

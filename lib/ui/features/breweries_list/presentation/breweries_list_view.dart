@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tech_challenge/core/network/dio_client.dart';
-import 'package:tech_challenge/ui/features/breweries_list/data/brewery_remote_datasource_impl.dart';
-import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_repository_impl.dart';
+import 'package:tech_challenge/core/di/injection.dart';
+import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_repository.dart';
 
 class BreweriesListView extends StatelessWidget {
   BreweriesListView({super.key});
-  final repository = BreweryRepositoryImpl(remoteDatasource: BreweryRemoteDatasourceImpl(dioClient: DioClient()));
+  final BreweryRepository repository = getIt<BreweryRepository>();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,7 +14,7 @@ class BreweriesListView extends StatelessWidget {
           onPressed: () async {
             final breweries = await repository.getBreweries(page: 1, perPage: 20);
 
-            print(breweries.first.name);
+            print(breweries.first.name + '' + breweries.first.city);
           },
           child: Text("Get Data"),
         ),

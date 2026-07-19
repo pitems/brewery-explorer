@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:tech_challenge/core/network/api_constants.dart';
 
+@lazySingleton
 class DioClient {
-  DioClient({Dio? dio}) : _dio = dio ?? Dio() {
+  DioClient() : _dio = Dio() {
     _configure();
   }
 

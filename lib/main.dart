@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tech_challenge/core/di/injection.dart';
 import 'package:tech_challenge/ui/features/breweries_list/presentation/breweries_list_view.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
   runApp(const MyApp());
 }
 
@@ -31,8 +34,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home:  BreweriesListView(),
+      home: BreweriesListView(),
     );
   }
 }
-
