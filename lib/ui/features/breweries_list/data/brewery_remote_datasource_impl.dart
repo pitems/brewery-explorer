@@ -27,19 +27,40 @@ class BreweryRemoteDatasourceImpl implements BreweryRemoteDatasource {
       }
       return data.map((item) => BreweryDto.fromJson(item as Map<String, dynamic>)).toList();
     } on DioException catch (_) {
-      throw const NetworkException();
+      throw NetworkException();
     }
   }
 
   @override
-  Future<BreweryDto> getBrewery(String id) {
-    // TODO: implement getBrewery
-    throw UnimplementedError();
+  Future<BreweryDto> getBrewery(String id) async {
+    try {
+      final response = await dioClient.client.get<Map<String, dynamic>>('${ApiConstants.breweries}/$id');
+      final Map<String, dynamic>? data = response.data;
+      if (data == null) {
+        throw const FetchException();
+      }
+      return BreweryDto.fromJson(data);
+
+    } on DioException catch (_) {
+      throw NetworkException();
+    }
   }
 
   @override
-  Future<List<BreweryDto>> searchBreweries(String query) {
-    // TODO: implement searchBreweries
-    throw UnimplementedError();
+  Future<List<BreweryDto>> searchBreweries({required String query, required int page, required int perPage}) async {
+    try {
+      final response = await dioClient.client.get<List<dynamic>>(
+        ApiConstants.queryBrewery,
+        queryParameters: {'query': query, 'page': page, 'per_page': perPage},
+      );
+      final List<dynamic>? data = response.data;
+      if (data == null) {
+        throw const FetchException();
+      }
+
+      return data.map((item) => BreweryDto.fromJson(item as Map<String, dynamic>)).toList();
+    } on DioException catch (_) {
+      throw NetworkException();
+    }
   }
 }

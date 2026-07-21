@@ -3,6 +3,5 @@ import 'package:tech_challenge/ui/features/breweries_list/data/dtos/brewery_dto.
 abstract interface class BreweryRemoteDatasource {
   Future<List<BreweryDto>> getBreweries({required int page, required int perPage});
   Future<BreweryDto> getBrewery(String id);
-  Future<List<BreweryDto>> searchBreweries(String query);
+  Future<List<BreweryDto>> searchBreweries({required String query, required int page, required int perPage});
 }
-

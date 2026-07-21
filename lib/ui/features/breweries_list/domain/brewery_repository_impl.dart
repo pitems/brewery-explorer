@@ -16,8 +16,14 @@ class BreweryRepositoryImpl implements BreweryRepository {
   }
 
   @override
-  Future<Brewery> getBrewery(String id) {
-    // TODO: implement getBrewery
-    throw UnimplementedError();
+  Future<Brewery> getBrewery(String id) async {
+    final brewery = await remoteDatasource.getBrewery(id);
+    return brewery.toEntity();
+  }
+
+  @override
+  Future<List<Brewery>> searchBreweries({required String query, required int page, required int perPage}) async {
+    final breweries = await remoteDatasource.searchBreweries(query: query, page: page, perPage: perPage);
+    return breweries.map((dto) => dto.toEntity()).toList();
   }
 }

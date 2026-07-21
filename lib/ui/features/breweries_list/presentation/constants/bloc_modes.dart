@@ -1,0 +1,1 @@
+enum BreweryListMode { regular, search }
