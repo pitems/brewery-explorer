@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:tech_challenge/ui/features/breweries_list/data/brewery_remote_datasource.dart';
 import 'package:tech_challenge/ui/features/breweries_list/data/mapper/brewery_mapper.dart';
+import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_detail_entity.dart';
 import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_entity.dart';
 import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_repository.dart';
 
@@ -16,9 +17,9 @@ class BreweryRepositoryImpl implements BreweryRepository {
   }
 
   @override
-  Future<Brewery> getBrewery(String id) async {
+  Future<BreweryDetail> getBrewery(String id) async {
     final brewery = await remoteDatasource.getBrewery(id);
-    return brewery.toEntity();
+    return brewery.toDetailEntity();
   }
 
   @override

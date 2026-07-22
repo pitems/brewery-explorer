@@ -15,6 +15,6 @@ final class BreweryNextPageRequested extends BreweryListEvent {
   const BreweryNextPageRequested();
 }
 
-final class BreweryGetDetailRequest extends BreweryListEvent {
-  const BreweryGetDetailRequest();
+final class BreweryListRetry extends BreweryListEvent {
+  const BreweryListRetry();
 }

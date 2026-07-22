@@ -21,8 +21,10 @@ import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_reposit
     as _i640;
 import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_repository_impl.dart'
     as _i378;
-import 'package:tech_challenge/ui/features/breweries_list/presentation/breweries_list_bloc.dart'
+import 'package:tech_challenge/ui/features/breweries_list/presentation/breweries_list/breweries_list_bloc.dart'
     as _i581;
+import 'package:tech_challenge/ui/features/breweries_list/presentation/brewery_detail/brewery_detail_bloc.dart'
+    as _i572;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -45,6 +47,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i581.BreweriesListBloc>(
       () => _i581.BreweriesListBloc(
+        repository: gh<_i640.BreweryRepository>(),
+        errorMapper: gh<_i421.AppErrorMapper>(),
+      ),
+    );
+    gh.factory<_i572.BreweryDetailBloc>(
+      () => _i572.BreweryDetailBloc(
         repository: gh<_i640.BreweryRepository>(),
         errorMapper: gh<_i421.AppErrorMapper>(),
       ),

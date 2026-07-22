@@ -18,12 +18,14 @@ final class BreweryListSuccess extends BreweriesListState {
     required this.hasReachedEnd,
     required this.isLoadingMore,
     required this.isSearchResult,
+    required this.paginationError,
   });
 
   final List<Brewery> breweries;
   final bool hasReachedEnd;
   final bool isLoadingMore;
   final bool isSearchResult;
+  final bool paginationError;
 }
 
 final class BreweryListEmpty extends BreweriesListState {

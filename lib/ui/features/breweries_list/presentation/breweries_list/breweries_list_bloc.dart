@@ -1,14 +1,13 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tech_challenge/core/bloc/bloc_transformers.dart';
 import 'package:tech_challenge/core/either/app_error_mapper.dart';
 import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_repository.dart';
-import 'package:tech_challenge/ui/features/breweries_list/presentation/brewery_list_event.dart';
-import 'package:tech_challenge/ui/features/breweries_list/presentation/constants/bloc_modes.dart';
-import 'package:tech_challenge/ui/features/breweries_list/presentation/helpers/next_page_helper.dart';
+import 'package:tech_challenge/ui/features/breweries_list/presentation/breweries_list/brewery_list_event.dart';
+import 'package:tech_challenge/ui/features/breweries_list/presentation/breweries_list/constants/bloc_modes.dart';
+import 'package:tech_challenge/ui/features/breweries_list/presentation/breweries_list/helpers/next_page_helper.dart';
 
 import 'breweries_list_state.dart';
 
@@ -33,7 +32,7 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
       transformer: debounceRestartable(const Duration(milliseconds: 350)),
     );
     on<BreweryNextPageRequested>(_onBreweryNextPageRequested);
-    on<BreweryGetDetailRequest>(_onDetailRequested);
+    on<BreweryListRetry>(_onBreweryListRetry);
   }
   final BreweryRepository repository;
   final AppErrorMapper errorMapper;
@@ -58,6 +57,7 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
           hasReachedEnd: _hasReachedEnd,
           isLoadingMore: false,
           isSearchResult: false,
+          paginationError: false,
         ),
       );
     } catch (error) {
@@ -95,6 +95,7 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
           hasReachedEnd: _hasReachedEnd,
           isLoadingMore: false,
           isSearchResult: true,
+          paginationError: false,
         ),
       );
     } catch (error) {
@@ -103,13 +104,6 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
   }
 
   Future<void> _onBreweryNextPageRequested(BreweryNextPageRequested event, Emitter<BreweriesListState> emit) async {
-    debugPrint(
-      'NEXT PAGE | mode=$_mode '
-      'hasReachedEnd=$_hasReachedEnd '
-      'isLoadingMore=$_isLoadingMore '
-      'page=$_currentPage '
-      'searchPage=$_currentSearchPage',
-    );
     // Check if we are currently working on a search or has reached the end
     if (_hasReachedEnd || _isLoadingMore) {
       return;
@@ -133,6 +127,7 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
         hasReachedEnd: _hasReachedEnd,
         isLoadingMore: true,
         isSearchResult: isSearchResult,
+        paginationError: false,
       ),
     );
 
@@ -142,8 +137,6 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
         BreweryListMode.regular => _currentPage + 1,
         BreweryListMode.search => _currentSearchPage + 1,
       };
-
-      debugPrint('Loading page $nextPage in mode $requestedMode');
 
       //This bring the required data depending on the mode
       final newBreweries = await getNextPage(
@@ -173,6 +166,7 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
             hasReachedEnd: _hasReachedEnd,
             isLoadingMore: _isLoadingMore,
             isSearchResult: isSearchResult,
+            paginationError: false,
           ),
         );
         return;
@@ -195,6 +189,7 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
           hasReachedEnd: _hasReachedEnd,
           isLoadingMore: _isLoadingMore,
           isSearchResult: isSearchResult,
+          paginationError: false,
         ),
       );
     } catch (_) {
@@ -207,6 +202,7 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
           hasReachedEnd: _hasReachedEnd,
           isLoadingMore: false,
           isSearchResult: isSearchResult,
+          paginationError: true,
         ),
       );
     }
@@ -220,5 +216,12 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
     _isLoadingMore = false;
   }
 
-  Future<void> _onDetailRequested(BreweryGetDetailRequest event, Emitter<BreweriesListState> emit) async {}
+  Future<void> _onBreweryListRetry(BreweryListRetry event, Emitter<BreweriesListState> emit) async {
+    switch (_mode) {
+      case BreweryListMode.regular:
+        add(const BreweryListRequested());
+      case BreweryListMode.search:
+        add(BrewerySearchChanged(_activeQuery));
+    }
+  }
 }

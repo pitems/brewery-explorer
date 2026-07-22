@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tech_challenge/ui/features/breweries_list/presentation/breweries_list_bloc.dart';
-import 'package:tech_challenge/ui/features/breweries_list/presentation/brewery_list_event.dart';
+import 'package:tech_challenge/ui/features/breweries_list/presentation/breweries_list/breweries_list_bloc.dart';
+import 'package:tech_challenge/ui/features/breweries_list/presentation/breweries_list/brewery_list_event.dart';
 
 class BrewerySearchBar extends StatefulWidget {
   const BrewerySearchBar({super.key});
