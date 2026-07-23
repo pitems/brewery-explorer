@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:tech_challenge/core/either/app_exception.dart';
-import 'package:tech_challenge/core/either/fetch_exception.dart';
-import 'package:tech_challenge/core/either/network_exception.dart';
+import 'package:tech_challenge/core/errors/app_exception.dart';
+import 'package:tech_challenge/core/errors/fetch_exception.dart';
+import 'package:tech_challenge/core/errors/network_exception.dart';
 
 abstract interface class DioExceptionMapper {
   AppException map(DioException error);

@@ -1,4 +1,4 @@
-import 'package:tech_challenge/core/either/app_exception.dart';
+import 'package:tech_challenge/core/errors/app_exception.dart';
 
 class FetchException
     extends AppException {

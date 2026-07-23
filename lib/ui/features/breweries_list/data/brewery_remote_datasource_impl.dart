@@ -1,12 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tech_challenge/core/either/fetch_exception.dart';
-import 'package:tech_challenge/core/either/network_exception.dart';
+import 'package:tech_challenge/core/errors/fetch_exception.dart';
+import 'package:tech_challenge/core/errors/network_exception.dart';
 import 'package:tech_challenge/core/network/api_constants.dart';
 import 'package:tech_challenge/core/network/dio_client.dart';
 import 'package:tech_challenge/ui/features/breweries_list/data/brewery_remote_datasource.dart';
 import 'package:tech_challenge/ui/features/breweries_list/data/dtos/brewery_dto.dart';
 
+
+/// Repository responsible for retrieving
+/// brewery information from the remote datasource
 @LazySingleton(as: BreweryRemoteDatasource)
 class BreweryRemoteDatasourceImpl implements BreweryRemoteDatasource {
   BreweryRemoteDatasourceImpl({required this.dioClient});

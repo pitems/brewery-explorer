@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tech_challenge/core/bloc/bloc_transformers.dart';
-import 'package:tech_challenge/core/either/app_error_mapper.dart';
+import 'package:tech_challenge/core/errors/app_error_mapper.dart';
 import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_repository.dart';
 import 'package:tech_challenge/ui/features/breweries_list/presentation/breweries_list/brewery_list_event.dart';
 import 'package:tech_challenge/ui/features/breweries_list/presentation/breweries_list/constants/bloc_modes.dart';
@@ -36,6 +36,8 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
   }
   final BreweryRepository repository;
   final AppErrorMapper errorMapper;
+
+  /// Loads the default brewery list
   Future<void> _onBreweryListRequested(BreweryListRequested event, Emitter<BreweriesListState> emit) async {
     //On first request
     _mode = BreweryListMode.regular;
@@ -65,6 +67,7 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
     }
   }
 
+  /// Performs a debounced brewery search
   Future<void> _onBrewerySearchChanged(BrewerySearchChanged event, Emitter<BreweriesListState> emit) async {
     _resetData();
     final query = event.query.trim();
@@ -103,6 +106,7 @@ class BreweriesListBloc extends Bloc<BreweryListEvent, BreweriesListState> {
     }
   }
 
+  /// Loads the nex available page
   Future<void> _onBreweryNextPageRequested(BreweryNextPageRequested event, Emitter<BreweriesListState> emit) async {
     // Check if we are currently working on a search or has reached the end
     if (_hasReachedEnd || _isLoadingMore) {

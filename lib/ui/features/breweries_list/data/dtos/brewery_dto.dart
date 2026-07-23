@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'brewery_dto.g.dart';
 
+//Represent the raw API response.
 @JsonSerializable()
 class BreweryDto {
   const BreweryDto({

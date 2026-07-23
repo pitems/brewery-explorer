@@ -1,6 +1,8 @@
 import 'package:injectable/injectable.dart';
-import 'package:tech_challenge/core/either/app_exception.dart';
+import 'package:tech_challenge/core/errors/app_exception.dart';
 
+///Maps application exceptions into
+/// user friendly messages
 abstract interface class AppErrorMapper {
   String map(Object error);
 }
