@@ -1,8 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tech_challenge/core/either/app_error_mapper.dart';
-import 'package:tech_challenge/core/either/network_exception.dart';
+import 'package:tech_challenge/core/errors/app_error_mapper.dart';
+import 'package:tech_challenge/core/errors/network_exception.dart';
 import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_detail_entity.dart';
 import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_repository.dart';
 import 'package:tech_challenge/ui/features/breweries_list/presentation/brewery_detail/brewery_detail_bloc.dart';

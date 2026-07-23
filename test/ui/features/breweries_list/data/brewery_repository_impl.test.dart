@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tech_challenge/core/either/network_exception.dart';
+import 'package:tech_challenge/core/errors/network_exception.dart';
 import 'package:tech_challenge/ui/features/breweries_list/data/brewery_remote_datasource.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:tech_challenge/ui/features/breweries_list/data/dtos/brewery_dto.dart';
