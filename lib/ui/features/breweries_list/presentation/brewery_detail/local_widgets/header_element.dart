@@ -1,3 +1,4 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 
 class HeaderElement extends StatelessWidget {
@@ -8,6 +9,7 @@ class HeaderElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         Text(
@@ -17,7 +19,10 @@ class HeaderElement extends StatelessWidget {
             fontSize: size ?? 15,
           ),
         ),
-        const Divider(thickness: 2, color: Colors.black),
+        DottedLine(
+          dashLength: 6,
+          dashGapLength: 4,
+        ),
       ],
     );
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:tech_challenge/core/navigation/url_helper.dart';
 import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_detail_entity.dart';
-import '../local_widgets/address_component.dart';
-import '../local_widgets/header_element.dart';
-import '../local_widgets/phone_component.dart';
+import 'package:tech_challenge/ui/features/breweries_list/presentation/constants/detail_consts.dart';
+import '../local_widgets/detail_component.dart';
 import '../local_widgets/website_component.dart';
 
 class SuccessDetail extends StatelessWidget {
@@ -13,20 +13,79 @@ class SuccessDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        HeaderElement(title: brewery.name),
-        const SizedBox(height: 20),
-        AddressComponent(addresses: brewery.addresses),
-        const SizedBox(height: 20),
-        if (hasValue(brewery.phone)) PhoneComponent(phoneNumber: brewery.phone!),
-        if (hasValue(brewery.website)) WebsiteComponent(brewery: brewery,onTap: ()=> _openWebsite(context),),
-      ],
+    final theme = Theme.of(context);
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 520),
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            elevation: 4,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 28,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SvgPicture.asset(
+                    BreweryDetailUxHelper().beerAsset(brewery.name),
+                    width: 90,
+                    height: 90,
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    brewery.name,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  const Divider(),
+                  const SizedBox(height: 12),
+                  if (brewery.addresses.isNotEmpty)
+                    DetailComponent(
+                      title: 'Addresses',
+                      icon: Icons.location_on_outlined,
+                      data: brewery.addresses,
+                    ),
+                  if (_hasValue(brewery.phone))
+                    DetailComponent(
+                      title: 'Phone',
+                      icon: Icons.phone_outlined,
+                      data: [brewery.phone!],
+                    ),
+                  if (_hasValue(brewery.website))
+                    WebsiteComponent(
+                      brewery: brewery,
+                      onTap: () => _openWebsite(context),
+                    ),
+                  const SizedBox(height: 24),
+                  Transform.rotate(
+                    angle: 3.14159,
+                    child: Opacity(
+                      opacity: 0.55,
+                      child: SvgPicture.asset(
+                        BreweryDetailUxHelper().beerAsset(brewery.name),
+                        width: 60,
+                        height: 60,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
-  bool hasValue(String? value) => value != null && value.trim().isNotEmpty;
+  bool _hasValue(String? value) => value != null && value.trim().isNotEmpty;
 
   Future<void> _openWebsite(BuildContext context) async {
     final opened = await UrlHelper.openWebsite(brewery.website!);

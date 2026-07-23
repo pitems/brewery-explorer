@@ -27,7 +27,7 @@ expect(brewery.address1, '1 Friesener Stra\u00dfe');
 expect(brewery.address2, isNull);
 expect(brewery.address3, isNull);
 expect(brewery.phone, '+49 9261 628000');
-expect(brewery.websiteUrl, 'http:\/\/www.antla.de');
+expect(brewery.websiteUrl, 'http://www.antla.de');
 
 
     });

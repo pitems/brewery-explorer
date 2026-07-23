@@ -11,7 +11,7 @@ class BreweryDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('detail')),
+      appBar: AppBar(title: Text('Brewery detail')),
       body: SafeArea(
         child: Column(
           children: [
@@ -27,7 +27,7 @@ class BreweryDetailView extends StatelessWidget {
                       },
                     ),
                   ),
-                  BreweryDetailSuccess(:final brewery) => SuccessDetail(brewery: brewery),
+                  BreweryDetailSuccess(:final brewery) => Expanded(child: SuccessDetail(brewery: brewery)),
                 };
               },
             ),
