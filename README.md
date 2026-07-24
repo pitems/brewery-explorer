@@ -106,7 +106,7 @@ updates the UI while avoiding unnecessary network requests.
 
 ## Documentation
 
-Additional project documentation can be found inside the '/docs' folder
+Additional project documentation can be found inside the '/documentation' folder
 
 - Architecture
 - Project Structure
