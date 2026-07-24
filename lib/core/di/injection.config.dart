@@ -13,17 +13,17 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:tech_challenge/core/errors/app_error_mapper.dart' as _i421;
 import 'package:tech_challenge/core/network/dio_client.dart' as _i30;
-import 'package:tech_challenge/ui/features/breweries_list/data/brewery_remote_datasource.dart'
+import 'package:tech_challenge/ui/features/brewery_explorer/data/brewery_remote_datasource.dart'
     as _i252;
-import 'package:tech_challenge/ui/features/breweries_list/data/brewery_remote_datasource_impl.dart'
+import 'package:tech_challenge/ui/features/brewery_explorer/data/brewery_remote_datasource_impl.dart'
     as _i60;
-import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_repository.dart'
+import 'package:tech_challenge/ui/features/brewery_explorer/domain/brewery_repository.dart'
     as _i640;
-import 'package:tech_challenge/ui/features/breweries_list/domain/brewery_repository_impl.dart'
+import 'package:tech_challenge/ui/features/brewery_explorer/domain/brewery_repository_impl.dart'
     as _i378;
-import 'package:tech_challenge/ui/features/breweries_list/presentation/breweries_list/breweries_list_bloc.dart'
+import 'package:tech_challenge/ui/features/brewery_explorer/presentation/breweries_list/breweries_list_bloc.dart'
     as _i581;
-import 'package:tech_challenge/ui/features/breweries_list/presentation/brewery_detail/brewery_detail_bloc.dart'
+import 'package:tech_challenge/ui/features/brewery_explorer/presentation/brewery_detail/brewery_detail_bloc.dart'
     as _i572;
 
 extension GetItInjectableX on _i174.GetIt {

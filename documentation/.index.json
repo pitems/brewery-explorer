@@ -3,8 +3,8 @@
   "documents": [
     {
       "doc_id": "doc_65751e3edb723b66fae8d",
-      "source_path": "/Users/pitems/Dev/Dart/Forest/tech_challenge/lib/ui/features/breweries_list/presentation/breweries_list/breweries_list_bloc.dart",
-      "doc_path": "/Users/pitems/Dev/Dart/Forest/tech_challenge/documentation/ui/features/breweries_list/presentation/breweries_list/breweries_list_bloc.md",
+      "source_path": "/Users/pitems/Dev/Dart/Forest/tech_challenge/lib/ui/features/brewery_explorer/presentation/breweries_list/breweries_list_bloc.dart",
+      "doc_path": "/Users/pitems/Dev/Dart/Forest/tech_challenge/documentation/lib/ui/features/brewery_explorer/presentation/breweries_list/breweries_list_bloc.md",
       "layout": "controller",
       "fingerprint": "6e6c7131060fda03",
       "snapshot": {
