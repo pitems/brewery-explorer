@@ -32,10 +32,9 @@ class _BrewerySearchBarState extends State<BrewerySearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
     return TextField(
       textInputAction: TextInputAction.search,
-      controller: controller,
+      controller: _controller,
       decoration: InputDecoration(
         hintText: 'Search breweries',
         prefixIcon: const Icon(Icons.search),
