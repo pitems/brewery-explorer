@@ -86,7 +86,7 @@ remaining scalable:
 
 ## Future Improvements
 
-Given additional development time, the next improvments would be:
+Given additional development time, the next improvements would be:
 
 - Offline cache
 - Mapbox visualization
