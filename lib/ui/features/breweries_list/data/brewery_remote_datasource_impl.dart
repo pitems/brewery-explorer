@@ -7,7 +7,6 @@ import 'package:tech_challenge/core/network/dio_client.dart';
 import 'package:tech_challenge/ui/features/breweries_list/data/brewery_remote_datasource.dart';
 import 'package:tech_challenge/ui/features/breweries_list/data/dtos/brewery_dto.dart';
 
-
 /// Repository responsible for retrieving
 /// brewery information from the remote datasource
 @LazySingleton(as: BreweryRemoteDatasource)
@@ -28,7 +27,7 @@ class BreweryRemoteDatasourceImpl implements BreweryRemoteDatasource {
       if (data == null) {
         throw const FetchException();
       }
-      return data.map((item) => BreweryDto.fromJson(item as Map<String, dynamic>)).toList();
+      return data.map(BreweryDto.fromJson).toList();
     } on DioException catch (_) {
       throw NetworkException();
     }
@@ -43,7 +42,6 @@ class BreweryRemoteDatasourceImpl implements BreweryRemoteDatasource {
         throw const FetchException();
       }
       return BreweryDto.fromJson(data);
-
     } on DioException catch (_) {
       throw NetworkException();
     }
@@ -61,7 +59,7 @@ class BreweryRemoteDatasourceImpl implements BreweryRemoteDatasource {
         throw const FetchException();
       }
 
-      return data.map((item) => BreweryDto.fromJson(item as Map<String, dynamic>)).toList();
+      return data.map(BreweryDto.fromJson).toList();
     } on DioException catch (_) {
       throw NetworkException();
     }

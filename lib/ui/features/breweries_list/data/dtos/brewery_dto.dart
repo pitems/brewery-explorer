@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tech_challenge/core/errors/parse_exception.dart';
 
 part 'brewery_dto.g.dart';
 
@@ -66,8 +67,22 @@ class BreweryDto {
   final double? latitude;
   final String? phone;
 
-  factory BreweryDto.fromJson(Map<String, dynamic> json) {
-    return _$BreweryDtoFromJson(json);
+  factory BreweryDto.fromJson(Object? json) {
+    try {
+      if (json is! Map) {
+        throw const ParseException();
+      }
+
+      final map = Map<String, dynamic>.from(json);
+
+      return _$BreweryDtoFromJson(map);
+    } on ParseException {
+      rethrow;
+    } on FormatException {
+      throw const ParseException();
+    } on TypeError {
+      throw const ParseException();
+    }
   }
 
   Map<String, dynamic> toJson() {
