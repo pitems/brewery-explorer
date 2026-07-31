@@ -5,6 +5,8 @@ on:
     branches:
       - master
       - main
+    tags:
+      - "v*"
     pull_request:
       branches:
         - master
@@ -46,7 +48,7 @@ jobs:
   build-apk:
     name: Build APK
     needs: analyze-and-test
-    if: github.event_name == 'push'
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
 
     steps:
@@ -66,7 +68,7 @@ jobs:
         run: flutter build apk --release
 
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: brewery-explorer-apk
           path: build/app/outputs/flutter-apk/app-release.apk
