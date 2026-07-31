@@ -1,0 +1,32 @@
+name: Create GitHub Release
+
+on:
+  workflow_call:
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Download APK artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: brewery-explorer-apk
+          path: release-assets
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            "release-assets/app-release.apk#Brewery Explorer APK" \
+            --verify-tag \
+            --generate-notes \
+            --title "Brewery Explorer $GITHUB_REF_NAME"
