@@ -1,0 +1,69 @@
+{
+  "baseDirectories": [
+    "lib/ui",
+    "lib/ui/features"
+  ],
+  "featureRoot": "lib/ui/features",
+  "view": {
+    "kind": "stateless"
+  },
+  "nodes": [
+    {
+      "folder": "domain",
+      "templates": [
+        {
+          "name": "entity",
+          "templatePath": "templates/domain/entity.dart.tmpl",
+          "outputNamePattern": "{{featureNameLower}}_entity"
+        },
+        {
+          "name": "repository",
+          "templatePath": "templates/domain/repository.dart.tmpl",
+          "outputNamePattern": "{{featureNameLower}}_repository"
+        }
+      ]
+    },
+    {
+      "folder": "data",
+      "templates": [
+        {
+          "name": "model",
+          "templatePath": "templates/data/model.dart.tmpl",
+          "outputNamePattern": "{{featureNameLower}}_model"
+        },
+        {
+          "name": "datasource",
+          "templatePath": "templates/data/datasource.dart.tmpl",
+          "outputNamePattern": "{{featureNameLower}}_datasource"
+        }
+      ]
+    },
+    {
+      "folder": "presentation",
+      "templates": [
+        {
+          "name": "controller",
+          "templatePath": "presets/shared/controller.body.tmpl",
+          "baseTemplatePath": "presets/shared/base.controller.generic.tmpl",
+          "outputNamePattern": "{{featureNameLower}}_controller"
+        },
+        {
+          "name": "view",
+          "templatePath": "presets/shared/view.body.tmpl",
+          "baseTemplatePath": "presets/shared/base.view.stateless.tmpl",
+          "outputNamePattern": "{{featureNameLower}}_view"
+        },
+        {
+          "name": "state",
+          "templatePath": "templates/presentation/state.dart.tmpl",
+          "outputNamePattern": "{{featureNameLower}}_state"
+        }
+      ]
+    }
+  ],
+  "profile": "clean",
+  "stateManagement": {
+    "family": "bloc",
+    "variant": "bloc"
+  }
+}
