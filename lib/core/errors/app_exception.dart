@@ -1,8 +1,5 @@
-abstract class AppException
-    implements Exception {
+abstract class AppException implements Exception {
+  const AppException(this.message);
 
-    const AppException(this.message);
-
-    final String message;
-
+  final String message;
 }

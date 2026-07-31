@@ -15,7 +15,8 @@ class BreweryExplorer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Brewery Explorer',debugShowCheckedModeBanner: false,
+      title: 'Brewery Explorer',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),

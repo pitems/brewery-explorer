@@ -17,8 +17,7 @@ class BeerLoader extends StatefulWidget {
   State<BeerLoader> createState() => _BeerLoaderState();
 }
 
-class _BeerLoaderState extends State<BeerLoader>
-    with SingleTickerProviderStateMixin {
+class _BeerLoaderState extends State<BeerLoader> with SingleTickerProviderStateMixin {
   static const _beerAssets = [
     'assets/beer1.svg',
     'assets/beer2.svg',
@@ -33,12 +32,13 @@ class _BeerLoaderState extends State<BeerLoader>
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    )
-      ..addStatusListener(_handleAnimationStatus)
-      ..forward();
+    _controller =
+        AnimationController(
+            vsync: this,
+            duration: widget.duration,
+          )
+          ..addStatusListener(_handleAnimationStatus)
+          ..forward();
   }
 
   void _handleAnimationStatus(AnimationStatus status) {
