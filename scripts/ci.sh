@@ -5,9 +5,6 @@ set -euo pipefail
 echo "Installing dependencies..."
 flutter pub get
 
-echo "Generating code..."
-dart run build_runner build --delete-conflicting-outputs
-
 echo "Checking formatting..."
 dart format --set-exit-if-changed .
 

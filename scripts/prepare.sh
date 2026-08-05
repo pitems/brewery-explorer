@@ -11,7 +11,7 @@ echo "Installing dependencies..."
 flutter pub get
 
 echo "Generating code..."
-dart run build_runner build --delete-conflicting-outputs
+dart run build_runner build
 
 echo "Checking formatting..."
 if dart format --set-exit-if-changed .; then
@@ -33,4 +33,4 @@ if ! flutter test --coverage; then
   exit 1
 fi
 
-echo "✅ Preparation completed. Review generated and formatted changes before committing."
+echo "✅ All preparation checks passed. The code is ready to review and commit."
