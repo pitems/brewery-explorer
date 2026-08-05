@@ -23,20 +23,19 @@ BreweryDto _$BreweryDtoFromJson(Map<String, dynamic> json) => BreweryDto(
   websiteUrl: json['website_url'] as String?,
 );
 
-Map<String, dynamic> _$BreweryDtoToJson(BreweryDto instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'brewery_type': instance.breweryType,
-      'city': instance.city,
-      'address_1': instance.address1,
-      'address_2': instance.address2,
-      'address_3': instance.address3,
-      'state_province': instance.stateProvince,
-      'postal_code': instance.postalCode,
-      'website_url': instance.websiteUrl,
-      'country': instance.country,
-      'longitude': instance.longitude,
-      'latitude': instance.latitude,
-      'phone': instance.phone,
-    };
+Map<String, dynamic> _$BreweryDtoToJson(BreweryDto instance) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+  'brewery_type': instance.breweryType,
+  'city': instance.city,
+  'address_1': instance.address1,
+  'address_2': instance.address2,
+  'address_3': instance.address3,
+  'state_province': instance.stateProvince,
+  'postal_code': instance.postalCode,
+  'website_url': instance.websiteUrl,
+  'country': instance.country,
+  'longitude': instance.longitude,
+  'latitude': instance.latitude,
+  'phone': instance.phone,
+};

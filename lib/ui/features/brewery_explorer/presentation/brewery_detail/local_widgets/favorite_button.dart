@@ -39,4 +39,3 @@ class FavoriteButton extends StatelessWidget {
     );
   }
 }
-

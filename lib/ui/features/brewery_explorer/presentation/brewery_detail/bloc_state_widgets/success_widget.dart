@@ -98,4 +98,3 @@ class SuccessDetail extends StatelessWidget {
     }
   }
 }
-
