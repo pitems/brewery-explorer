@@ -25,6 +25,16 @@ import 'package:tech_challenge/ui/features/brewery_explorer/presentation/breweri
     as _i754;
 import 'package:tech_challenge/ui/features/brewery_explorer/presentation/brewery_detail/brewery_detail_bloc.dart'
     as _i143;
+import 'package:tech_challenge/ui/features/favorites/data/favorite_datasource_impl.dart'
+    as _i526;
+import 'package:tech_challenge/ui/features/favorites/data/favorites_datasource.dart'
+    as _i639;
+import 'package:tech_challenge/ui/features/favorites/domain/favorite_repository_impl.dart'
+    as _i583;
+import 'package:tech_challenge/ui/features/favorites/domain/favorites_repository.dart'
+    as _i311;
+import 'package:tech_challenge/ui/features/favorites/presentation/favorites_bloc.dart'
+    as _i893;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -36,6 +46,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i30.DioClient>(() => _i30.DioClient());
     gh.lazySingleton<_i256.BreweryRemoteDatasource>(
       () => _i152.BreweryRemoteDatasourceImpl(dioClient: gh<_i30.DioClient>()),
+    );
+    gh.lazySingleton<_i639.FavoritesLocalDataSource>(
+      () => _i526.InMemoryFavoritesDataSource(),
     );
     gh.lazySingleton<_i761.AppErrorMapper>(
       () => const _i761.AppErrorMapperImpl(),
@@ -54,6 +67,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i143.BreweryDetailBloc>(
       () => _i143.BreweryDetailBloc(
         repository: gh<_i89.BreweryRepository>(),
+        errorMapper: gh<_i761.AppErrorMapper>(),
+      ),
+    );
+    gh.lazySingleton<_i311.FavoritesRepository>(
+      () => _i583.FavoritesRepositoryImpl(
+        localDataSource: gh<_i639.FavoritesLocalDataSource>(),
+      ),
+    );
+    gh.factory<_i893.FavoritesBloc>(
+      () => _i893.FavoritesBloc(
+        repository: gh<_i311.FavoritesRepository>(),
         errorMapper: gh<_i761.AppErrorMapper>(),
       ),
     );

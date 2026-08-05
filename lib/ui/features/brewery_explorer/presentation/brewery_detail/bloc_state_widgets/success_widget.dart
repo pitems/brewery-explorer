@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tech_challenge/core/navigation/url_helper.dart';
 import 'package:tech_challenge/ui/features/brewery_explorer/domain/brewery_detail_entity.dart';
+import 'package:tech_challenge/ui/features/brewery_explorer/presentation/brewery_detail/local_widgets/favorite_button.dart';
 import 'package:tech_challenge/ui/features/brewery_explorer/presentation/constants/detail_consts.dart';
+
 import '../local_widgets/detail_component.dart';
 import '../local_widgets/website_component.dart';
 
@@ -31,6 +33,7 @@ class SuccessDetail extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  FavoriteButton(brewery: brewery),
                   SvgPicture.asset(
                     BreweryDetailUxHelper().beerAsset(brewery.name),
                     width: 90,
@@ -95,3 +98,4 @@ class SuccessDetail extends StatelessWidget {
     }
   }
 }
+
